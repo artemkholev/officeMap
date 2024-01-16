@@ -1,7 +1,7 @@
 <template>
   <div :class="headerClasses">
     <router-link to="/" class="logo">
-      <p>Posts site</p>
+      <p>Office Map</p>
     </router-link>
     <router-link to="/posts" class="posts">
       <svg viewBox="0 0 26 26" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -12,7 +12,7 @@
         <path d="M24.25,9.75h-5c-0.4140625,0-0.75,0.3359375-0.75,0.75v5c0,0.4140625,0.3359375,0.75,0.75,0.75h5   c0.4140625,0,0.75-0.3359375,0.75-0.75v-5C25,10.0859375,24.6640625,9.75,24.25,9.75z M23.5,14.75H20v-3.5h3.5V14.75z" fill="black"/>
         <path d="M15.5,9.75h-5c-0.4140625,0-0.75,0.3359375-0.75,0.75v5c0,0.4140625,0.3359375,0.75,0.75,0.75h5   c0.4140625,0,0.75-0.3359375,0.75-0.75v-5C16.25,10.0859375,15.9140625,9.75,15.5,9.75z M14.75,14.75h-3.5v-3.5h3.5V14.75z" fill="black"/>
       </svg>
-      <p>Посты</p>
+      <p>...</p>
     </router-link>
     <div class="burgerTheme">
       <button 

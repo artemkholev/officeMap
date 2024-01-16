@@ -4,7 +4,7 @@
       <p>Posts</p>
     </div>
     
-    <p class="footer__name-company">© Posts, {{ new Date().getFullYear()  }}</p>
+    <p class="footer__name-company">© Office Map, {{ new Date().getFullYear()  }}</p>
   </div>
 </template>
 
