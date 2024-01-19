@@ -8,7 +8,7 @@
       },
       query: $route.query
     })"
-    @mousedown.right="removePost(post)"
+    @mousedown.right="removePlan(post)"
   >
     <div class="post__info">
       <p>{{ post.id }}</p>
@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { usePostsStore } from '@/shered/store/posts';
+import { usePlansStore } from '@/shered/store/plans';
 import { PathNames } from '@/shered/constants/route.constants';
 
 defineProps({
@@ -31,8 +31,8 @@ defineProps({
   }
 })
 
-const postsStore = usePostsStore();
-const { removePost } = postsStore;
+const plansStore = usePlansStore();
+const { removePlan } = plansStore;
 </script>
 
-<style src="./PostItem.style.scss" lang="scss" scoped></style>
+<style src="./PlanItem.style.scss" lang="scss" scoped></style>

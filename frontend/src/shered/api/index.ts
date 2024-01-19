@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-export const API_URL = 'https://jsonplaceholder.typicode.com/';
+export const API_URL = 'http://localhost:8000/';
   // import.meta.env.VITE_BASE_URL;
 
 export const apiAxios = axios.create({

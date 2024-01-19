@@ -23,10 +23,10 @@ const router = createRouter({
     {
       path: Links.POSTS,
       name: PathNames.POSTS,
-      component: () => import('@/pages/postsPage/PostsPage.vue'),
+      component: () => import('@/pages/plansPage/PlansPage.vue'),
       meta: {
         layout: MainLayout,
-        title: 'Список постов',
+        title: 'Список планов',
         breadcrumb: (route: RouteLocationNormalizedLoaded) => [
           {
             title: 'Главная',
@@ -41,21 +41,21 @@ const router = createRouter({
     {
       path: `${Links.POSTS}/:id`,
       name: PathNames.POST,
-      component: () => import('@/pages/postPage/PostPage.vue'),
+      component: () => import('@/pages/planPage/PlanPage.vue'),
       meta: {
         layout: MainLayout,
-        title: 'Пост',
+        title: 'План',
         breadcrumb: (route: RouteLocationNormalizedLoaded) => [
           {
             title: 'Главная',
             link: Links.HOME
           },
           {
-            title: 'Список постов',
+            title: 'Список планов',
             link: Links.POSTS
           },
           {
-            title: 'Пост № '+ route.params.id as string
+            title: 'План № '+ route.params.id as string
           }
         ]
       }

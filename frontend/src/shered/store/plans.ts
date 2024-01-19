@@ -1,16 +1,16 @@
-import type { IPost } from '../api/postsApi/postsApi.types';
+import type { IPlan } from '../api/plansApi/planApi.types';
 import { apiAxios } from '../api';
 import { defineStore } from 'pinia';
 import { computed, reactive, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import type { IAuthor } from '../api/postsApi/authorApi.types';
+import type { IAuthor } from '../api/plansApi/authorApi.types';
 
-export const usePostsStore = defineStore('posts', () => {
+export const usePlansStore = defineStore('plans', () => {
   const isLoading = ref<boolean>(false);
   const isError = ref<boolean>(false);
 
-  let posts = ref<IPost[]>([]);
-  const post = ref<IPost>();
+  let plans = ref<IPlan[]>([]);
+  const plan = ref<IPlan>();
   const author = ref<IAuthor>();
 
   const selected = ref<string>('');
@@ -34,24 +34,24 @@ export const usePostsStore = defineStore('posts', () => {
 
   const route = useRoute();
 
-  const sortedPost = computed(() => {
-    return [...posts.value].sort((post1: any, post2: any) => post1[selected.value]?.localeCompare(post2[selected.value]))
+  const sortedPlans = computed(() => {
+    return [...plans.value].sort((plan1: any, plan2: any) => plan1[selected.value]?.localeCompare(plan2[selected.value]))
   });
 
-  const removePost = (post: any) => {
-    posts.value = posts.value.filter(p => p.id !== post.id)
+  const removePlan = (post: any) => {
+    plans.value = plans.value.filter(p => p.id !== post.id)
   }
 
-  const getPosts = async () => {
+  const getPlans = async () => {
     isLoading.value = true;
     try {
-      const responce = await apiAxios.get('/posts', {
+      const responce = await apiAxios.get('/plans', {
         params: {
           _page: page.value,
           _limit: limit.value
         }
       });
-      posts.value = responce.data;
+      plans.value = responce.data;
       totalPages.value = Math.ceil(responce.headers['x-total-count'] / limit.value);
       isError.value = false;
     } catch (error) {
@@ -63,11 +63,11 @@ export const usePostsStore = defineStore('posts', () => {
   };
 
 
-  const getPost = async () => {
+  const getPlan = async () => {
     isLoading.value = true;
     try {
-      const responce = await apiAxios('/posts/' + route.params.id);
-      post.value = responce.data;
+      const responce = await apiAxios('/plans/' + route.params.id);
+      plan.value = responce.data;
       isError.value = false;
     } catch (error) {
       isError.value = true;
@@ -90,5 +90,5 @@ export const usePostsStore = defineStore('posts', () => {
       isLoading.value = false;
     }
   };
-  return { getInfoAboutAuthor, getPosts, getPost, removePost, isError, isLoading, posts, post, page, limit, selected, totalPages, selectOptions, sortedPost, author };
+  return { getInfoAboutAuthor, getPlans, getPlan, removePlan, isError, isLoading, plans, plan, page, limit, selected, totalPages, selectOptions, sortedPlans, author };
 });

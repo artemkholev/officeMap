@@ -1,10 +1,10 @@
 <template>
   <div class="post-container">
       <h2 v-if="isLoading">Loading...</h2>
-      <div v-else-if="post">
-        <h1>{{ `Пост ${ post?.id }` }}</h1>
-        <h2>{{ post?.title }}</h2>
-        <p>{{ post?.body }}</p>
+      <div v-else-if="plan">
+        <h1>{{ `План ${ plan?.id }` }}</h1>
+        <h2>{{ plan?.title }}</h2>
+        <p>{{ plan?.body }}</p>
         <button-elem v-if="!author"
             :clName="null"
             :title="'Об авторе'"
@@ -46,24 +46,24 @@
 </template>
 
 <script setup lang="ts">
-import { usePostsStore } from '@/shered/store/posts'
+import { usePlansStore } from '@/shered/store/plans'
 import { storeToRefs } from 'pinia';
 import { onMounted, reactive, ref } from 'vue';
 
-const postsStore = usePostsStore();
+const plansStore = usePlansStore();
 
-const { author, post, isError, isLoading } = storeToRefs(postsStore);
-const { getPost, getInfoAboutAuthor } = postsStore;
+const { author, plan, isError, isLoading } = storeToRefs(plansStore);
+const { getPlan, getInfoAboutAuthor } = plansStore;
 const show = ref(false);
 
 const AboutAuthor = () => {
-  getInfoAboutAuthor(post.value?.userId);
+  getInfoAboutAuthor(plan.value?.userId);
   show.value = true;
 }
 
 onMounted(() => {
-  getPost();
+  getPlan();
 });
 </script>
 
-<style src="./PostPage.style.scss" lang="scss" scoped></style>
+<style src="./PlanPage.style.scss" lang="scss" scoped></style>

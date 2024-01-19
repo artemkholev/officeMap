@@ -6,7 +6,7 @@
         :options="selectOptions"
       />
     </div>
-    <PostsList :posts="selected === 'general' ? posts : sortedPost"/>
+    <PlansList :plans="selected === 'general' ? plans : sortedPlans"/>
     <p v-if="isLoading" :style="{margin: '10px'}">Loading...</p>
     <p v-if="isError" :style="{margin: '10px', color: 'red'}">Ошибка: {{ isError }}</p>
     <div class="page__wrapper">
@@ -28,24 +28,24 @@
 
 import { onMounted, watch } from 'vue';
 import { storeToRefs } from 'pinia';
-import PostsList from '@/features/PostsList/PostsList.vue';
-import { usePostsStore } from '@/shered/store/posts';
+import PlansList from '@/features/PlansList/PlansList.vue';
+import { usePlansStore } from '@/shered/store/plans';
 
-const postsStore = usePostsStore();
-const { isError, isLoading, posts, page, selected, totalPages, selectOptions, sortedPost } = storeToRefs(postsStore);
-const { getPosts } = postsStore;
+const plansStore = usePlansStore();
+const { isError, isLoading, page, plans, selected, totalPages, selectOptions, sortedPlans } = storeToRefs(plansStore);
+const { getPlans } = plansStore;
 
 const changePage = (currentPage: number) => {
   page.value = currentPage;
 };
 
 watch(page, () => {
-  getPosts();
+  getPlans();
 });
 
 onMounted(() => {
-  getPosts()
+  getPlans()
 });
 </script>
 
-<style src="./PostsPage.style.scss" lang="scss" scoped></style>
+<style src="./PlansPage.style.scss" lang="scss" scoped></style>
