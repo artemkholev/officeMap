@@ -1,7 +1,7 @@
 <template>
   <div :class="footerClasses">
     <div class="footer-info">
-      <p>Posts</p>
+      <p>Office map</p>
     </div>
     
     <p class="footer__name-company">© Office Map, {{ new Date().getFullYear()  }}</p>
