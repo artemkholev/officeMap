@@ -18,12 +18,12 @@ SECRET_KEY = env.str('DJANGO_SECRET_KEY', 'REPLACE_ME')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DJANGO_DEBUG', True)
 
-CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST: list[str] = env.list(
-    'DJANGO_CORS_ORIGIN_WHITELIST',
-    ['http://127.0.0.1:5173', 'http://localhost:5173'],
-)
+# CORS_ORIGIN_WHITELIST: list[str] = env.list(
+#     'DJANGO_CORS_ORIGIN_WHITELIST',
+#     ['http://127.0.0.1:5173', 'http://localhost:5173'],
+# )
+CORS_ORIGIN_ALLOW_ALL=True
 
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', [])
 
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', [])
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,9 +45,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
