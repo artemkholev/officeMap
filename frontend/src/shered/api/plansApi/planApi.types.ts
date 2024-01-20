@@ -6,3 +6,10 @@ export interface IPlan {
   width: number;
   height: number;
 }  
+
+export interface IPlans {
+  id: number;
+  img: string;
+  width: number;
+  height: number;
+}  

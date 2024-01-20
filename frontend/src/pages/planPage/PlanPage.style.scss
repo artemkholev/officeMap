@@ -4,6 +4,16 @@
   padding: 10px;
   flex-grow: 1;
   font-size: var(--title-fs);
+  & > .info-plan {
+    & > .contant__plan {
+      img {
+        border: 2px solid greenyellow;
+        border-radius: 10px;
+        display:block;
+        margin:auto;
+      }
+    }
+  }
 }
 .post-container {
   font-size: var(--post-fs);

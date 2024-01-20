@@ -18,12 +18,7 @@ SECRET_KEY = env.str('DJANGO_SECRET_KEY', 'REPLACE_ME')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DJANGO_DEBUG', True)
 
-CORS_ALLOW_CREDENTIALS = True
-# CORS_ORIGIN_WHITELIST: list[str] = env.list(
-#     'DJANGO_CORS_ORIGIN_WHITELIST',
-#     ['http://127.0.0.1:5173', 'http://localhost:5173'],
-# )
-CORS_ORIGIN_ALLOW_ALL=True
+CORS_ORIGIN_ALLOW_ALL = True
 
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', [])
 

@@ -13,8 +13,8 @@
     <div class="post__info">
       <p>{{ post.id }}</p>
       <div class="post__info-elem">
-        <p><strong>Название:</strong> {{ post.title }}</p>
-        <p><strong>Описание:</strong> {{ post.body }}</p>
+        <p><strong>Наименование:</strong> {{ post.name }}</p>
+        <img :src="post.img" alt="фото плана" width="100" height="100">
       </div>
     </div>
   </div>

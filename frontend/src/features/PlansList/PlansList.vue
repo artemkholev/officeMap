@@ -1,5 +1,5 @@
 <template>
-  <div v-if="plans.length > 0">
+  <div v-if="plans.length != 0">
     <h3>Cписок планов помещений</h3>
     <div name="bucket-list">
       <PlanItem v-for="plan in plans"
@@ -16,11 +16,11 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
 import PlanItem from "@/entities/planItem/PlanItem.vue";
-import type { IPlan } from "@/shered/api/plansApi/planApi.types";
+import type { IPlans } from "@/shered/api/plansApi/planApi.types";
 
 defineProps({
   plans: {
-    type: Array<IPlan>,
+    type: Array<IPlans>,
     required: true
   }
 })

@@ -16,10 +16,10 @@
           </li>
           <li :style="{margin: '15px'}">
             <router-link 
-              to="/posts"
+              to="/plans"
               :style="{color: 'greenyellow', textDecoration: 'none'}"
             >
-              Посты
+              Планы
             </router-link>
           </li>
         </ul>

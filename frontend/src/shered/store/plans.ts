@@ -1,4 +1,4 @@
-import type { IPlan } from '../api/plansApi/planApi.types';
+import type { IPlan, IPlans } from '../api/plansApi/planApi.types';
 import { apiAxios } from '../api';
 import { defineStore } from 'pinia';
 import { computed, reactive, ref } from 'vue';
@@ -9,7 +9,7 @@ export const usePlansStore = defineStore('plans', () => {
   const isLoading = ref<boolean>(false);
   const isError = ref<boolean>(false);
 
-  let plans = ref<IPlan[]>([]);
+  let plans = ref<IPlans[]>([]);
   const plan = ref<IPlan>();
   const author = ref<IAuthor>();
 
@@ -26,10 +26,6 @@ export const usePlansStore = defineStore('plans', () => {
       name: 'По названию',
       value:  'title'
     },
-    {
-      name: 'По содержанию',
-      value: 'body'
-    }
   ]);
 
   const route = useRoute();
@@ -60,13 +56,13 @@ export const usePlansStore = defineStore('plans', () => {
     } finally {
       isLoading.value = false;
     }
-  };
+  }
 
 
   const getPlan = async () => {
     isLoading.value = true;
     try {
-      const responce = await apiAxios('/plans/' + route.params.id);
+      const responce = await apiAxios.get('/plans/' + route.params.id);
       plan.value = responce.data;
       isError.value = false;
     } catch (error) {

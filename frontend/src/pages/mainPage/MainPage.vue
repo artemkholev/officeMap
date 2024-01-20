@@ -1,7 +1,7 @@
 <template>
   <div class="container">
       <div class="generalInfo">
-        <p>Tesk for enter posts and info about post/user...</p>
+        <p>Пока выбьешь место под солнцем, уже наступает вечер.</p>
         <img src="/dog.jpg" alt="">
       </div>
   </div>
