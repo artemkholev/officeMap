@@ -24,7 +24,7 @@
                 query: $route.query
               })"
               v-for="workplace in plan.workplaces" :key="workplace.id"
-              :style="{left: (workplace.x) + 'px', bottom: (workplace.y) + 'px', position: 'absolute'}"
+              :style="{left: (workplace.x) + 'px', bottom: (workplace.y) + 'px', position: 'absolute',  cursor: 'pointer'}"
               :employee="workplace.employee"
             />
           </div>
@@ -57,7 +57,6 @@ import WorkplaceItem from '@/entities/workplace/WorkplaceItem.vue';
 import { onMounted, ref } from 'vue';
 
 const plansStore = usePlansStore();
-
 const { author, plan, isError, isLoading } = storeToRefs(plansStore);
 const { getPlan, getInfoAboutAuthor } = plansStore;
 const show = ref(false);

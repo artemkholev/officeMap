@@ -1,0 +1,20 @@
+.workplace {
+  padding: 20px;
+  border: 2px solid greenyellow;
+  border-radius: 10px;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+
+  & > .workplace__info-elem {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+  }
+}
+
+@media(max-width: 768px) {
+  .workplace {
+    flex-direction: column;
+  }
+}
