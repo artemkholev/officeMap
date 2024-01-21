@@ -60,6 +60,32 @@ const router = createRouter({
         ]
       }
     },
+    {
+      path: `${Links.POSTS}/:id/${PathNames.WORKPLACES}/:id_w`,
+      name: PathNames.WORKPLACE,
+      component: () => import('@/pages/workplacePage/WorkplacePage.vue'),
+      meta: {
+        layout: MainLayout,
+        title: 'Рабочее место',
+        breadcrumb: (route: RouteLocationNormalizedLoaded) => [
+          {
+            title: 'Главная',
+            link: Links.HOME
+          },
+          {
+            title: 'Список планов',
+            link: Links.POSTS
+          },
+          {
+            title: 'План № ' + route.params.id as string,
+            link: Links.POSTS + '/' + route.params.id as string
+          },
+          {
+            title: 'Рабочее место № '+ route.params.id_w as string
+          }
+        ]
+      }
+    },
   ]
 });
 

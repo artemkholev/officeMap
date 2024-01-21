@@ -16,6 +16,13 @@
             class="workplaces"
           >
             <WorkplaceItem 
+              @mousedown.left="$router.push({
+                name: PathNames.WORKPLACE,
+                params: {
+                  id_w: workplace.id
+                },
+                query: $route.query
+              })"
               v-for="workplace in plan.workplaces" :key="workplace.id"
               :style="{left: (workplace.x) + 'px', bottom: (workplace.y) + 'px', position: 'absolute'}"
               :employee="workplace.employee"
@@ -43,6 +50,7 @@
 </template>
 
 <script setup lang="ts">
+import { PathNames } from '@/shered/constants/route.constants';
 import { usePlansStore } from '@/shered/store/plans'
 import { storeToRefs } from 'pinia';
 import WorkplaceItem from '@/entities/workplace/WorkplaceItem.vue';
