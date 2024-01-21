@@ -1,6 +1,8 @@
+import type { Iworkplace } from "../workplacesApi/workplaceApi.types";
+
 export interface IPlan {
   id: number;
-  workplaces: string[];
+  workplaces: Iworkplace[];
   name: string;
   img: string;
   width: number;

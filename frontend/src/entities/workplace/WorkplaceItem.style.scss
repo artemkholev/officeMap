@@ -1,0 +1,14 @@
+.container-workplace {
+  width: 40px;
+  height: 40px;
+  border: 2px solid greenyellow;
+  border-radius: 100%;
+  background-color: green;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & > .info {
+    margin: 0;
+  }
+}
