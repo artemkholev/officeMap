@@ -1,7 +1,7 @@
 <template>
   <div class="container">
       <div class="generalInfo">
-        <p>Пока выбьешь место под солнцем, уже наступает вечер.</p>
+        <p>Логика может привести Вас от пункта А к пункту Б, а воображение — куда угодно.<br><em :style="{marginLeft: '300px'}">(Альберт Эйнштейн)</em></p>
         <img src="/dog.jpg" width="300" alt="собака">
       </div>
   </div>

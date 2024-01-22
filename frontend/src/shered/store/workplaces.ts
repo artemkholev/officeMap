@@ -45,6 +45,14 @@ export const useWorkplacesStore = defineStore('workplaces', () => {
     } 
   }
 
+  const addWorkplace = async () => {
+    try {
+
+    } catch {
+
+    }
+  }
+
   const getWorkplaces = async () => {
     isLoading.value = true;
     try {
@@ -80,5 +88,5 @@ export const useWorkplacesStore = defineStore('workplaces', () => {
     }
   };
 
-  return {getWorkplace, removeWorkplace, workplace}
+  return {getWorkplace, removeWorkplace, addWorkplace, workplace}
 });

@@ -32,7 +32,7 @@
         <button-elem
           :clName="null"
           :title="'добавить рабочее место'"
-          :handler="() => null"
+          :handler="handlerButtonShowDialog"
           :width="'30vw'"
           :height="'48px'"
           :background="'greenyellow'"
@@ -46,6 +46,42 @@
       </div>
       <div v-else>План не найден!</div>
       <div v-if="isError">Error!</div>
+
+      <dialog-window v-model:show="dialogVisible">
+        <div>
+          <h1>Добавить рабочее место</h1>
+            <input-elem
+              v-model="workplaceInfo.employee"
+              :typeInput="'text'"
+              :placeholderInput="'employee'"
+            />
+            <input-elem
+              v-model="workplaceInfo.X"
+              :typeInput="'text'"
+              :placeholderInput="'X'"
+            />
+            <input-elem
+              v-model="workplaceInfo.Y"
+              :typeInput="'text'"
+              :placeholderInput="'Y'"
+            />
+          <p>{{ info }}</p>
+          <button-elem
+            :clName="null"
+            :title="'Отправить'"
+            :handler="addWorkplace"
+            :width="'30vw'"
+            :height="'48px'"
+            :background="'#70C05B'"
+            :textColor="null"
+            :fontSize="null"
+            :fontWeight="null"
+            :margin="'24px 0 0 0'"
+            :borderRadius="'10px'"
+            :icon="null"
+          />
+        </div>
+      </dialog-window>
   </div>
 </template>
 
@@ -54,32 +90,29 @@ import { PathNames } from '@/shered/constants/route.constants';
 import { usePlansStore } from '@/shered/store/plans'
 import { storeToRefs } from 'pinia';
 import WorkplaceItem from '@/entities/workplace/WorkplaceItem.vue';
-import { onMounted, ref } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
+import { useWorkplacesStore } from '@/shered/store/workplaces';
+
+const workplaceInfo = reactive({
+  employee: '',
+  X: '',
+  Y: '',
+});
 
 const plansStore = usePlansStore();
 const { author, plan, isError, isLoading } = storeToRefs(plansStore);
-const { getPlan, getInfoAboutAuthor } = plansStore;
+const { getPlan } = plansStore;
+
+const workplace = useWorkplacesStore();
+const { addWorkplace } = workplace;
+
 const show = ref(false);
+const info = ref('');
 
-// const AboutAuthor = () => {
-//   getInfoAboutAuthor(plan.value?.userId);
-//   show.value = true;
-// }
-
-  //  <button-elem v-if="author"
-  //           :clName="null"
-  //           :title="show ? 'Скрыть' : 'Показать'"
-  //           :handler="() => {show = !show}"
-  //           :width="'30vw'"
-  //           :height="'48px'"
-  //           :background="'greenyellow'"
-  //           :textColor="null"
-  //           :fontSize="null"
-  //           :fontWeight="null"
-  //           :margin="'24px 0 0 0'"
-  //           :borderRadius="'10px'"
-  //           :icon="null"
-  //       />
+const dialogVisible = ref(false);
+const handlerButtonShowDialog = () => {
+  dialogVisible.value = true;
+}
 
 onMounted(() => {
   getPlan();
