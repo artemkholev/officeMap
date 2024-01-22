@@ -56,20 +56,19 @@
               :placeholderInput="'employee'"
             />
             <input-elem
-              v-model="workplaceInfo.X"
+              v-model="workplaceInfo.x"
               :typeInput="'text'"
               :placeholderInput="'X'"
             />
             <input-elem
-              v-model="workplaceInfo.Y"
+              v-model="workplaceInfo.y"
               :typeInput="'text'"
               :placeholderInput="'Y'"
             />
-          <p>{{ info }}</p>
           <button-elem
             :clName="null"
             :title="'Отправить'"
-            :handler="addWorkplace"
+            :handler="send"
             :width="'30vw'"
             :height="'48px'"
             :background="'#70C05B'"
@@ -90,28 +89,49 @@ import { PathNames } from '@/shered/constants/route.constants';
 import { usePlansStore } from '@/shered/store/plans'
 import { storeToRefs } from 'pinia';
 import WorkplaceItem from '@/entities/workplace/WorkplaceItem.vue';
-import { onMounted, reactive, ref } from 'vue';
+import { computed, onMounted, reactive, ref } from 'vue';
 import { useWorkplacesStore } from '@/shered/store/workplaces';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
+const plansStore = usePlansStore();
+const { plan, isError, isLoading } = storeToRefs(plansStore);
+const { getPlan } = plansStore;
+
+const planName = plan.value?.name || '';
+const planId = route.params.id;
 const workplaceInfo = reactive({
-  employee: '',
-  X: '',
-  Y: '',
+  x: null,
+  y: null,
+  plan: planId,
+  employee: null,
 });
 
-const plansStore = usePlansStore();
-const { author, plan, isError, isLoading } = storeToRefs(plansStore);
-const { getPlan } = plansStore;
+const workplaceForm = computed(() => {
+  return {
+    x: workplaceInfo.x,
+    y: workplaceInfo.y,
+    plan: workplaceInfo.plan,
+    employee: workplaceInfo.employee
+  };
+});
+
 
 const workplace = useWorkplacesStore();
 const { addWorkplace } = workplace;
 
-const show = ref(false);
-const info = ref('');
-
 const dialogVisible = ref(false);
 const handlerButtonShowDialog = () => {
   dialogVisible.value = true;
+}
+
+const send = async () => {
+  await addWorkplace(workplaceForm.value);
+  getPlan();
+  workplaceInfo.x = null;
+  workplaceInfo.y = null;
+  workplaceInfo.employee = null;
+  dialogVisible.value = false;
 }
 
 onMounted(() => {

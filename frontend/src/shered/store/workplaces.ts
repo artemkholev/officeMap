@@ -45,11 +45,12 @@ export const useWorkplacesStore = defineStore('workplaces', () => {
     } 
   }
 
-  const addWorkplace = async () => {
+  const addWorkplace = async (data: any) => {
     try {
-
-    } catch {
-
+      await apiAxios.post('/workplaces/', data);
+    } catch(error) {
+      isError.value = true;
+      console.error(error);
     }
   }
 
